@@ -1,0 +1,165 @@
+body {
+  width: 400px;
+  padding: 10px;
+  font-size: 1rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #e0e0e0;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: space-around;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+/* ... existing styles ... */
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option-row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.option-row label {
+  flex: 2;
+  margin-right: 10px;
+}
+
+.option-row input[type="number"],
+.option-row input[type="text"],
+.option-row select {
+  flex: 2;
+  width: 100%;
+  box-sizing: border-box;
+}
+.option-row input[type="checkbox"] {
+  align-self: flex-end;
+  margin-right: 10px;
+}
+
+[data-tooltip]:hover::after {
+  display: block;
+  position: absolute;
+  content: attr(data-tooltip);
+  border: 1px solid black;
+  background: #eee;
+  padding: 0.25em;
+  width: 200px;
+}
+
+.help-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.help-container h1 {
+  color: #333;
+}
+
+.help-container ul {
+  margin-bottom: 20px;
+}
+
+.help-container button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.help-container button:hover {
+  background-color: #45a049;
+}
+
+/* ... existing styles ... */
+
+.help-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.help-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 80%;
+  max-height: 80%;
+  overflow-y: auto;
+}
+
+.help-content h2 {
+  margin-top: 0;
+}
+
+.help-content ul {
+  padding-left: 20px;
+}
+
+#closeHelp {
+  margin-top: 15px;
+  padding: 5px 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+}
+
+#closeHelp:hover {
+  background-color: #45a049;
+}
+
+.footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.close-button {
+  display: flex;
+  justify-content: right;
+}

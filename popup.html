@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Confetti Options</title>
+    <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <div class="header">
+      <img src="assets/icon.png" alt="Confetti Icon" class="icon" />
+      <h2>Confetti Options</h2>
+    </div>
+    <div class="options">
+      <div class="option-row">
+        <label for="particleCount">Number of confetti:</label>
+        <input
+          type="number"
+          id="particleCount"
+          min="1"
+          max="1000"
+          value="100"
+        />
+      </div>
+      <div class="option-row">
+        <label for="duration">Duration (seconds):</label>
+        <input type="number" id="duration" min="1" max="60" value="5" />
+      </div>
+      <div class="option-row">
+        <label
+          for="emojis"
+          data-tooltip="Press Win + . (period) or Ctrl + Cmd + Space to open emoji picker in Win and macOS respectively."
+          >Emojis (comma-separated):</label
+        >
+        <input type="text" id="emojis" value="🎉,🎊,🥳,🎈,🦄" />
+      </div>
+      <div class="option-row">
+        <label for="colors">Colors</label>
+        <!-- <input type="text" id="colors" value="#ff0000,#00ff00,#0000ff" /> -->
+        <input type="color" id="colors" class="color-picker" value="#ff0000" />
+        <input type="color" id="colors" class="color-picker" value="#00ff00" />
+        <input type="color" id="colors" class="color-picker" value="#0000ff" />
+      </div>
+      <div class="option-row">
+        <label for="confettiStyle">Style:</label>
+        <select id="confettiStyle">
+          <option value="confettiBasic">Basic</option>
+          <option value="confettiEmoji">Emoji</option>
+          <option value="confettiRandom">Random</option>
+          <option value="confettiActual">Actual</option>
+          <option value="confettiThee">Patassu</option>
+          <option value="confettiNakshatra">Nakshatra</option>
+          <option value="confettiSnow">Snow</option>
+          <option value="confettiCelebration">Celebration</option>
+          <option value="confettiAllOver">All Over</option>
+        </select>
+      </div>
+      <div class="option-row">
+        <label for="spread">Spread:</label>
+        <input type="number" id="spread" min="0" max="360" value="180" />
+      </div>
+      <div class="option-row">
+        <label for="angle">Angle:</label>
+        <input type="number" id="angle" min="0" max="360" value="90" />
+      </div>
+      <div class="option-row">
+        <label for="confettiSound">Sound effect:</label>
+        <input type="checkbox" id="confettiSound" />
+        <audio id="confettiSound" controls hidden>
+          <source src="./assets/confetti_pop.mp3" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+      <div class="option-row">
+        <label for="confettiMouseClick">Mouse click:</label>
+        <input type="checkbox" id="confettiMouseClick" />
+      </div>
+      <div class="option-row">
+        <label>Confetti triggered:</label>
+        <label id="stats"></label>
+      </div>
+
+      <div class="button-group">
+        <button id="save">🎉 Save</button>
+        <button id="resetStats">🧩 Reset Stats</button>
+        <button id="helpButton">🦄 Help</button>
+      </div>
+    </div>
+
+    <!-- New help section -->
+    <div id="helpPopup" class="help-popup" style="display: none">
+      <div class="help-content">
+        <h2>🎉 Confetti Celebrations Help</h2>
+        <p>
+          🙏 Thanks for using Confetti Celebrations extension! Here's how to use
+          it:
+        </p>
+        <ul>
+          <li>Customize your confetti options in this popup</li>
+          <li>Click "Save" to apply your settings</li>
+          <li>Use the extension on any webpage to trigger confetti</li>
+          <li>Enjoy the celebration!</li>
+        </ul>
+        <p>😍 For best performance:</p>
+        <ul>
+          <li>Limit the number of confetti particles to 100</li>
+        </ul>
+        <p>🎯 Best angles and spreads for each style:</p>
+        <ul>
+          <li>All Over: Angle 90, Spread 240, Number of particles 1000</li>
+          <li>Snow: Number of particles 100</li>
+        </ul>
+        <p>🤔 Troubleshooting:</p>
+        <ul>
+          <li>If the website becomes unresponsive, try to reload the page.</li>
+          <li>
+            If you don't see confetti, check if the extension is enabled in your
+            browser.
+          </li>
+          <li>If the confetti is not visible, try reloading the page.</li>
+          <li>
+            As a last resort, you can try to disable and re-enable the
+            extension.
+          </li>
+          <li>
+            If no sound, try to reload the page or turn on the sound in the
+            extension or turn on the sound in your system.
+          </li>
+        </ul>
+
+        <p class="footer">
+          💰 <a href="https://buymeacoffee.com/qainsights">Buy me a coffee</a
+          ><br />
+          <a href="https://qainsights" target="_blank"
+            >NaveenKumar Namachivayam</a
+          >
+        </p>
+        <div class="close-button">
+          <button id="closeHelp">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
