@@ -2,8 +2,8 @@ body {
   width: 400px;
   padding: 10px;
   font-size: 1rem;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 label {
@@ -39,7 +39,9 @@ button:hover {
   display: flex;
   align-items: center;
   gap: 10px;
+  justify-content: center;
 }
+
 /* ... existing styles ... */
 
 .options {
@@ -57,6 +59,10 @@ button:hover {
 
 .option-row label {
   flex: 2;
+  margin-right: 10px;
+}
+
+.option-row input[type="color"] {
   margin-right: 10px;
 }
 
@@ -134,10 +140,26 @@ button:hover {
 
 .help-content h2 {
   margin-top: 0;
+  text-align: center;
 }
 
 .help-content ul {
   padding-left: 20px;
+}
+
+.help-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+.help-header .icon {
+  width: 32px; /* Adjust as needed */
+  height: 32px; /* Adjust as needed */
+}
+
+.help-header h2 {
+  margin: 0;
 }
 
 #closeHelp {
@@ -157,6 +179,7 @@ button:hover {
 .footer {
   margin-top: 20px;
   text-align: center;
+  font-size: small;
 }
 
 .close-button {

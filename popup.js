@@ -109,3 +109,22 @@ document.getElementById("spread").addEventListener("change", function () {
 document.getElementById("angle").addEventListener("change", function () {
   validateInput(this);
 });
+
+// Sound checkbox functionality
+document.getElementById("confettiSound").addEventListener("change", () => {
+  const audio = document.getElementById("confettiSound");
+  if (audio.checked) {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, { action: "playConfettiSound" });
+    });
+  }
+});
+
+// Style change event listener
+document.getElementById("confettiStyle").addEventListener("change", () => {
+  const style = document.getElementById("confettiStyle").value;
+  if (style === "confettiAllOver") {
+    document.getElementById("spread").value = "240";
+    document.getElementById("angle").value = "90";
+  }
+});

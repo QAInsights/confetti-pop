@@ -196,9 +196,12 @@ function fireCelebration(particleCount, colors, duration) {
   })();
 }
 
-function playConfettiSound() {
+function playConfettiSound(volume) {
   const audio = new Audio(chrome.runtime.getURL("./assets/confetti_pop.mp3"));
   audio.currentTime = 0; // Reset the audio to the beginning
+  // play at reduced volume, else at full volume
+  audio.volume = volume || 1;
+
   audio.play().catch((error) => {
     console.error("Audio playback failed:", error);
   });
@@ -331,6 +334,18 @@ function triggerConfetti(options) {
         parseInt(options.duration)
       );
       break;
+
+    case "confettiFlowerPots":
+      fireFlowerPots(options.colors, options.particleCount, options.duration);
+      break;
+    default:
+      confetti({
+        particleCount: parseInt(options.particleCount),
+        spread: parseInt(options.spread),
+        angle: parseInt(options.angle),
+        origin: { y: 0.6 },
+      });
+      break;
   }
 
   if (
@@ -344,6 +359,50 @@ function triggerConfetti(options) {
 // Logger function
 function log(message, data = {}) {
   console.log(`Confetti Logger: ${message}`, data);
+}
+function fireFlowerPots(colors, particleCount, duration) {
+  var end = Date.now() + duration * 1000;
+
+  (function frame() {
+    // Left flower pot
+    confetti({
+      particleCount: particleCount,
+      angle: 90,
+      spread: 25,
+      origin: { x: 0, y: 1 },
+      startVelocity: 50,
+      colors: colors,
+      length: 10,
+      drift: 2,
+    });
+
+    // Middle flower pot
+    confetti({
+      particleCount: particleCount,
+      angle: 90,
+      spread: 45,
+      origin: { x: 0.5, y: 1 },
+      startVelocity: 50,
+      colors: colors,
+      length: 10,
+      drift: 0,
+    });
+
+    // Right flower pot
+    confetti({
+      particleCount: particleCount,
+      angle: 90,
+      spread: 25,
+      origin: { x: 1, y: 1 },
+      startVelocity: 50,
+      colors: colors,
+      length: 10,
+      drift: -2,
+    });
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  })();
 }
 
 function updateConfettiStats(particleCount) {
@@ -447,3 +506,9 @@ function bottomRightConfetti(particleCount, angle, spread, duration) {
     angle: angle,
   });
 }
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (request.action === "playConfettiSound") {
+    playConfettiSound(0.1);
+  }
+});
