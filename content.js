@@ -71,7 +71,7 @@ function fire(particleRatio, opts, count) {
   });
 }
 
-function fireThee(particleCount, duration) {
+function fireThee(particleCount, duration, options) {
   var duration = duration * 1000;
   var animationEnd = Date.now() + duration;
   var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
@@ -90,13 +90,28 @@ function fireThee(particleCount, duration) {
       finalParticleCount,
       origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
     });
-    playConfettiSound();
+
     confetti({
       ...defaults,
       finalParticleCount,
       origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
     });
-    playConfettiSound();
+
+    if (options.confettiSound) {
+      confetti({
+        ...defaults,
+        finalParticleCount,
+        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+      });
+      playConfettiSound();
+
+      confetti({
+        ...defaults,
+        finalParticleCount,
+        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+      });
+      playConfettiSound();
+    }
   }, 250);
 }
 
@@ -267,7 +282,11 @@ function triggerConfetti(options) {
       fire(0.1, { spread: 120, startVelocity: 45 }, count);
       break;
     case "confettiThee":
-      fireThee(parseInt(options.particleCount), parseInt(options.duration));
+      fireThee(
+        parseInt(options.particleCount),
+        parseInt(options.duration),
+        options
+      );
       break;
     case "confettiNakshatra":
       shootNakshatra(parseInt(options.particleCount));
@@ -277,6 +296,12 @@ function triggerConfetti(options) {
       break;
     case "confettiCelebration":
       fireCelebration(options.particleCount, options.colors, options.duration);
+      break;
+    case "confettiCinematic":
+      fireCinematic(
+        parseInt(options.duration),
+        parseInt(options.particleCount)
+      );
       break;
     case "confettiAllOver":
       topLeftConfetti(
@@ -360,6 +385,37 @@ function triggerConfetti(options) {
 function log(message, data = {}) {
   console.log(`Confetti Logger: ${message}`, data);
 }
+
+function fireCinematic(duration, particleCount) {
+  var duration = duration * 1000;
+  var animationEnd = Date.now() + duration;
+  var skew = 1;
+
+  (function frame() {
+    var timeLeft = animationEnd - Date.now();
+    var ticks = Math.max(2001, 500 * (timeLeft / duration));
+    skew = Math.max(0.8, skew - 0.001);
+
+    confetti({
+      particleCount: particleCount,
+      startVelocity: 10,
+      ticks: ticks,
+      origin: {
+        x: Math.random(),
+        // since particles fall down, skew start toward the top
+        y: Math.random() * skew - 0.2,
+      },
+      gravity: randomInRange(0.4, 0.6),
+      scalar: randomInRange(0.4, 1),
+      drift: randomInRange(-0.4, 0.4),
+    });
+
+    if (timeLeft > 0) {
+      requestAnimationFrame(frame);
+    }
+  })();
+}
+
 function fireFlowerPots(colors, particleCount, duration) {
   var end = Date.now() + duration * 1000;
 

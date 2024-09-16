@@ -123,8 +123,17 @@ document.getElementById("confettiSound").addEventListener("change", () => {
 // Style change event listener
 document.getElementById("confettiStyle").addEventListener("change", () => {
   const style = document.getElementById("confettiStyle").value;
-  if (style === "confettiAllOver") {
-    document.getElementById("spread").value = "240";
-    document.getElementById("angle").value = "90";
+  switch (style) {
+    case "confettiAllOver":
+      document.getElementById("spread").value = "240";
+      document.getElementById("angle").value = "90";
+      break;
+    case "confettiFlowerPots":
+      document.getElementById("particleCount").value = "25";
+      break;
+    case "confettiCinematic":
+      document.getElementById("particleCount").value = "12";
+      document.getElementById("duration").value = "10";
+      break;
   }
 });
