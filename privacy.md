@@ -30,10 +30,6 @@ We implement appropriate technical and organizational measures to protect the in
 Changes to Extension Permissions
 If future updates to Confetti Celebration require changes to the extension's permissions or data handling, we will update this Privacy Policy and notify users accordingly.
 
-# Children's Privacy
-
-Confetti Celebration is not directed to children under the age of 13, and we do not knowingly collect personal information from children under 13.
-
 # Changes to This Privacy Policy
 
 We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.
