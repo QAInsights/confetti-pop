@@ -3,7 +3,7 @@
   "name": "Confetti Celebrations",
   "version": "1.0",
   "description": "Displays customizable confetti on the current page",
-  "permissions": ["activeTab", "storage", "declarativeContent"],
+  "permissions": ["activeTab", "storage"],
   "action": {
     "default_popup": "popup.html"
   },

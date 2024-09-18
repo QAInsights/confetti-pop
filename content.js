@@ -74,7 +74,7 @@ function fire(particleRatio, opts, count) {
 function fireThee(particleCount, duration, options) {
   var duration = duration * 1000;
   var animationEnd = Date.now() + duration;
-  var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+  var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 10 };
 
   var interval = setInterval(function () {
     var timeLeft = animationEnd - Date.now();
